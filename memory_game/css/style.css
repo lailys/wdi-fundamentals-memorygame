@@ -43,6 +43,20 @@ main{
 
 
 }
+#images{
+    position: relative;
+}
+#alert-bar{
+   
+  position: -webkit-absolute;
+  position: absolute;
+  top:30%;
+  opacity: .5;
+  padding: 60px 0;
+ 
+  width: 100%;
+
+}
 
 img{
     margin: 40px 8px 85px 8px;
