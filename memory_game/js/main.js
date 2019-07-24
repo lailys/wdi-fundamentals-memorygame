@@ -27,7 +27,8 @@ const cards = [{
 ]
 var cardsInPlay = []
 var marked = []
-var i = 0
+var totalGame = 0
+var totalScore = 0
 
 
 for (var i = 0; i < cards.length; i++) {
@@ -42,14 +43,33 @@ for (var i = 0; i < cards.length; i++) {
 
 function checkForMatch() {
 
-
+    totalGame++;
+    document.getElementById("games").innerHTML = totalGame;
+    var alertElement = document.createElement("p");
+    alertElement.setAttribute('id', 'alert');
+    document.getElementById("alert-bar").appendChild(alertElement)
+   
     if (cardsInPlay[0].getAttribute('data-id') !== cardsInPlay[1].getAttribute('data-id')) {
-        cardsInPlay[0].getAttribute('class') === cardsInPlay[1].getAttribute('class') ? alert("You found a match!") : alert("Sorry, try again.")
+       if(cardsInPlay[0].getAttribute('class') === cardsInPlay[1].getAttribute('class')) {
+        totalScore++;
+        document.getElementById("score").innerHTML =totalScore;
+        document.getElementById("alert").innerHTML = "You found a match!";
+
+       }else{
+        document.getElementById("alert").innerHTML = "Sorry, try again.";
+       } 
     }
 
-    for (var i = 0; i < 2; i++) {
-        cardsInPlay[i].setAttribute("src", "images/back.png");
-    }
+
+        for (var i = 0; i < 2; i++) {
+            cardsInPlay[i].setAttribute("src", "images/back.png");
+        }
+  
+
+    setTimeout(function () {
+        document.getElementById("alert-bar").removeChild(alertElement );
+       
+    }, 1500);
 
     cardsInPlay = []
 
@@ -62,7 +82,7 @@ function flipCard() {
 
 
     this.setAttribute("src", cards[this.getAttribute('data-id')].cardImage)
-    
+
     cardsInPlay.push(this)
 
     setTimeout(function () {
