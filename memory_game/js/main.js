@@ -39,7 +39,11 @@ for (var i = 0; i < cards.length; i++) {
     cardElement.addEventListener('click', flipCard)
     document.getElementById("images").appendChild(cardElement)
 }
+document.getElementById("reset").addEventListener('click', reset)
 
+function reset() {
+    document.location.reload()
+}
 
 function checkForMatch() {
 
@@ -48,27 +52,27 @@ function checkForMatch() {
     var alertElement = document.createElement("p");
     alertElement.setAttribute('id', 'alert');
     document.getElementById("alert-bar").appendChild(alertElement)
-   
-    if (cardsInPlay[0].getAttribute('data-id') !== cardsInPlay[1].getAttribute('data-id')) {
-       if(cardsInPlay[0].getAttribute('class') === cardsInPlay[1].getAttribute('class')) {
-        totalScore++;
-        document.getElementById("score").innerHTML =totalScore;
-        document.getElementById("alert").innerHTML = "You found a match!";
 
-       }else{
-        document.getElementById("alert").innerHTML = "Sorry, try again.";
-       } 
+    if (cardsInPlay[0].getAttribute('data-id') !== cardsInPlay[1].getAttribute('data-id')) {
+        if (cardsInPlay[0].getAttribute('class') === cardsInPlay[1].getAttribute('class')) {
+            totalScore++;
+            document.getElementById("score").innerHTML = totalScore;
+            document.getElementById("alert").innerHTML = "You found a match!";
+
+        } else {
+            document.getElementById("alert").innerHTML = "Sorry, try again.";
+        }
     }
 
 
-        for (var i = 0; i < 2; i++) {
-            cardsInPlay[i].setAttribute("src", "images/back.png");
-        }
-  
+    for (var i = 0; i < 2; i++) {
+        cardsInPlay[i].setAttribute("src", "images/back.png");
+    }
+
 
     setTimeout(function () {
-        document.getElementById("alert-bar").removeChild(alertElement );
-       
+        document.getElementById("alert-bar").removeChild(alertElement);
+
     }, 1500);
 
     cardsInPlay = []
